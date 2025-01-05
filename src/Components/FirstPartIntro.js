@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import Work from './Work';
 import Contact from './Contact';
@@ -9,24 +9,23 @@ import { Box, Typography } from '@mui/material';
 import BackgroundImg from '../Assets/image.png'
 
 const FirstPartIntro = () => {
-    const [menuData, setMenuData] = useState([
-        {
-            id: 2,
-            name: 'Expertise'
-        },
-        {
-            id: 3,
-            name: 'Work'
-        },
-        {
-            id: 4,
-            name: 'Experience'
-        },
-        {
-            id: 5,
-            name: 'Contact'
-        },
-    ])
+    const menuData=[ {
+        id: 2,
+        name: 'Expertise'
+    },
+    {
+        id: 3,
+        name: 'Work'
+    },
+    {
+        id: 4,
+        name: 'Experience'
+    },
+    {
+        id: 5,
+        name: 'Contact'
+    },]
+
     const expertiseRef = useRef(null);
     const workRef = useRef(null);
     const experienceRef = useRef(null);
