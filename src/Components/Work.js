@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
+
+import Petooti from '../Assets/Peetoti.png';
+import Boardsi from '../Assets/Boardsi.png';
+import SmartPath from '../Assets/SmartPath.png';
+import RoyalMindFullNess from '../Assets/RoyalMindFullNess.png';
 
 const Work = () => {
     const projects = [
@@ -12,6 +18,7 @@ const Work = () => {
                 'Real-time chat integration for communication between rescuers and adopters.',
                 'Responsive design for mobile and desktop users.',
             ],
+            image: Petooti,
             technologies: ['React.js', 'Material-UI', 'Intercom', 'State and Country Picker'],
         },
         {
@@ -23,6 +30,7 @@ const Work = () => {
                 'Detailed yoga classes with video tutorials and schedules.',
                 'Search functionality to find classes based on categories and difficulty levels.',
             ],
+            image: RoyalMindFullNess,
             technologies: ['React.js', 'Material-UI', 'Radix-UI'],
         },
         {
@@ -34,6 +42,7 @@ const Work = () => {
                 'User authentication and profile management.',
                 'Real-time job updates and notifications.',
             ],
+            image: Boardsi,
             technologies: ['React.js', 'TypeScript', 'Material-UI', 'Axios'],
         },
         {
@@ -46,36 +55,80 @@ const Work = () => {
                 'Data-driven insights for better decision-making in career development.',
                 'Career path visualization tools for clear, actionable guidance.',
             ],
-            technologies: ['React.js', 'SASS', 'REST API','Material-UI','Redux-Toolkit'],
+            image: SmartPath,
+            technologies: ['React.js', 'SASS', 'REST API', 'Material-UI', 'Redux-Toolkit'],
         },
     ];
+
+    const [clickedProjects, setClickedProjects] = useState(new Set());
+
+    const handleClick = (index) => {
+        setClickedProjects((prevClickedProjects) => {
+            const newClickedProjects = new Set(prevClickedProjects);
+            if (newClickedProjects.has(index)) {
+                newClickedProjects.delete(index);
+            } else {
+                newClickedProjects.add(index); 
+            }
+            return newClickedProjects;
+        });
+    };
+
+    const handleImageClick = (index) => {
+        setClickedProjects((prevClickedProjects) => {
+            const newClickedProjects = new Set(prevClickedProjects);
+            newClickedProjects.delete(index); 
+            return newClickedProjects;
+        });
+    };
 
     return (
         <Box style={styles.container}>
             <Typography className="name_title_style" style={{ textAlign: "unset !important", marginBottom: '20px' }}>My Work</Typography>
-            <Grid container  style={styles.projectsContainer}>
+            <Grid container style={styles.projectsContainer}>
                 {projects.map((project, index) => (
-                    <Grid item sm={12} lg={5} md={5}  key={index} style={styles.projectItem}>
-                        <Typography sx={styles.title}>{project.title}</Typography>
-                        <Typography style={styles.projectDescription}>{project.description}</Typography>
-
-                        <Box style={styles.featuresContainer}>
-                            <Typography style={styles.sectionTitle}>Key Features:</Typography>
-                            <ul style={styles.featuresList}>
-                                {project.features.map((feature, index) => (
-                                    <li key={index} style={styles.featureItem}>{feature}</li>
-                                ))}
-                            </ul>
+                    <Grid
+                        item
+                        sm={12}
+                        lg={5}
+                        md={5}
+                        key={index}
+                        style={styles.projectItem}
+                    >
+                        <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Typography sx={styles.title}>{project.title}</Typography>
+                            <Box onClick={() => handleClick(index)}>
+                                <FlipCameraAndroidIcon style={styles.rotateIcon} />
+                            </Box>
                         </Box>
 
-                        <Box style={styles.technologiesContainer}>
-                            <Typography style={styles.sectionTitle}>Technologies Used:</Typography>
-                            <ul style={styles.technologiesList}>
-                                {project.technologies.map((tech, index) => (
-                                    <li key={index} style={styles.technologyItem}>{tech}</li>
-                                ))}
-                            </ul>
-                        </Box>
+                        {!clickedProjects.has(index) ? (
+                            <>
+                                <Typography style={styles.projectDescription}>{project.description}</Typography>
+
+                                <Box style={styles.featuresContainer}>
+                                    <Typography style={styles.sectionTitle}>Key Features:</Typography>
+                                    <ul style={styles.featuresList}>
+                                        {project.features.map((feature, index) => (
+                                            <li key={index} style={styles.featureItem}>{feature}</li>
+                                        ))}
+                                    </ul>
+                                </Box>
+
+                                <Box style={styles.technologiesContainer}>
+                                    <Typography style={styles.sectionTitle}>Technologies Used:</Typography>
+                                    <ul style={styles.technologiesList}>
+                                        {project.technologies.map((tech, index) => (
+                                            <li key={index} style={styles.technologyItem}>{tech}</li>
+                                        ))}
+                                    </ul>
+                                </Box>
+                            </>
+                        ) : (
+                            <Box style={styles.projectImageContainer} onClick={() => handleImageClick(index)}>
+                                <img src={project.image} alt={project.title} style={styles.projectImage} />
+                            </Box>
+                        )}
                     </Grid>
                 ))}
             </Grid>
@@ -93,23 +146,29 @@ const styles = {
     },
     projectsContainer: {
         display: 'flex',
-        flexWrap:'wrap',
+        flexWrap: 'wrap',
     },
-
     projectItem: {
-        
         backgroundColor: 'rgb(111 111 111 / 27%)',
         padding: '20px',
         borderRadius: '8px',
-        marginBottom:'10px',
-        marginRight:'10px',
+        marginBottom: '10px',
+        marginRight: '10px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        position: 'relative',
+    },
+    projectImageContainer: {
+        marginTop: '20px',
+        cursor: 'pointer',
     },
     projectImage: {
         width: '100%',
         height: 'auto',
         borderRadius: '8px',
-        marginBottom: '12px',
+    },
+    rotateIcon: {
+        fontSize: '30px',
+        cursor: 'pointer',
     },
     projectTitle: {
         fontFamily: 'Poppins, sans-serif',
@@ -134,9 +193,9 @@ const styles = {
     featuresList: {
         listStyleType: 'circle',
         paddingLeft: '20px',
-        display:'flex',
-        flexDirection:'column',
-        gap:'5px'
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
     },
     featureItem: {
         fontSize: '14px',
@@ -148,16 +207,13 @@ const styles = {
     technologiesList: {
         listStyleType: 'circle',
         paddingLeft: '20px',
-        display:'flex',
-        flexDirection:'column',
-        gap:'5px'
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
     },
     technologyItem: {
         fontSize: '14px',
         color: '#555',
-    },
-    projectButton: {
-        marginTop: '12px',
     },
 };
 
