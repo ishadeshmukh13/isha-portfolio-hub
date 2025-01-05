@@ -1,0 +1,115 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.menu_item_style {
+  font-size: 18px !important;
+  font-family: "Gambetta", serif !important;
+  letter-spacing: 3px !important;
+  transition: 700ms ease !important;
+  font-variation-settings: "wght" 311 !important;
+  margin-bottom: 0.8rem !important;
+  outline: none !important;
+  text-align: center !important;
+  cursor: pointer;
+}
+
+.name_style_small {
+  font-size: 30px !important;
+  font-family: "Gambetta", serif !important;
+  letter-spacing: 3px !important;
+  transition: 700ms ease !important;
+  font-variation-settings: "wght" 311 !important;
+  margin-bottom: 0.8rem !important;
+  outline: none !important;
+  text-align: center !important;
+  padding: 20px;
+}
+
+.name_style {
+  font-size: 90px !important;
+  text-transform: uppercase !important;
+  font-family: "Gambetta", serif !important;
+  letter-spacing: -3px !important;
+  transition: 700ms ease !important;
+  font-variation-settings: "wght" 311 !important;
+  outline: none !important;
+  text-align: center !important;
+}
+@media (max-width: 768px) {
+  .name_style {
+    font-size: 40px !important;
+    letter-spacing: -2px !important;
+  }
+}
+
+.name_title_style {
+  font-size: 30px !important;
+  font-family: "Gambetta", serif !important;
+  letter-spacing: 3px !important;
+  transition: 700ms ease !important;
+  font-variation-settings: "wght" 311 !important;
+  outline: none !important;
+  text-align: center !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px; 
+  height: 10px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+html, body {
+  cursor: url('./Assets/icons8-cursor-30.png'), pointer;
+
+}
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
