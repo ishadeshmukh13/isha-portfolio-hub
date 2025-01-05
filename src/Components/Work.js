@@ -95,7 +95,7 @@ const Work = () => {
                         key={index}
                         style={styles.projectItem}
                     >
-                        <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',flexWrap:'wrap',gap:'10px' }}>
                             <Typography sx={styles.title}>{project.title}</Typography>
                             <Box onClick={() => handleClick(index)}>
                                 <FlipCameraAndroidIcon style={styles.rotateIcon} />
